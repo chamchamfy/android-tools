@@ -86,7 +86,8 @@ jobs:
       - name: package 
         run: |
           # Package 
-          cp -af /usr/local/bin $GITHUB_WORKSPACE/.github/bin
+          mkdir -p $GITHUB_WORKSPACE/.github/bin
+          cp -af /usr/local/bin/* $GITHUB_WORKSPACE/.github/bin
           
         
       - name: upload   
