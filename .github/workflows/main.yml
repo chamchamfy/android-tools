@@ -83,11 +83,14 @@ jobs:
           cmake --install . --prefix /usr/local
           echo -e "\n### all done ###\n"
 
-      - name: package
+      - name: package 
         run: |
-        cp -af /usr/local/bin $GITHUB_WORKSPACE/.github/bin
+          # Package 
+          cp -af /usr/local/bin $GITHUB_WORKSPACE/.github/bin
           
-      - uses: actions/upload-artifact@v3
+        
+      - name: upload   
+        uses: actions/upload-artifact@v3
         with:
           name: android-tools.zip
           path: .github/bin/*
