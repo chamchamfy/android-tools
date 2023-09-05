@@ -24,14 +24,13 @@ jobs:
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-            ${{ matrix.pkgs }} cmake clang git golang libbrotli-dev \
+            ${{ matrix.pkgs }} cmake curl clang git golang libbrotli-dev \
             libgtest-dev liblz4-dev libpcre2-dev libprotobuf-dev libunwind-dev \
             libusb-1.0-0-dev libzstd-dev pkg-config protobuf-compiler ninja-build
       - name: download source
-        uses: actions/download-artifact@v3
-        with:
-          name: android-tools-34.0.0.tar.xz
-          path: "https://github.com/nmeum/android-tools/releases/download/34.0.0/android-tools-34.0.0.tar.xz"
+        run: |
+          echo "android-tools-34.0.0.tar.xz"
+          curl -s -L "https://github.com/nmeum/android-tools/releases/download/34.0.0/android-tools-34.0.0.tar.xz" -o "android-tools-34.0.0.tar.xz"
 
       - name: build & install
         run: |
@@ -55,4 +54,3 @@ jobs:
           name: android-tools.zip
           path: .github/bin/*
           retention-days: 3
-          
